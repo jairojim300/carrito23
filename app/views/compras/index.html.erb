@@ -1,0 +1,24 @@
+<h1>Listing compras</h1>
+
+<table>
+  <tr>
+    <th>Usuario</th>
+    <th>Fecha</th>
+    <th>Total</th>
+  </tr>
+
+<% @compras.each do |compra| %>
+  <tr>
+    <td><%=h compra.usuario_id %></td>
+    <td><%=h compra.fecha %></td>
+    <td><%=h compra.total %></td>
+    <td><%= link_to 'Show', compra %></td>
+    <td><%= link_to 'Edit', edit_compra_path(compra) %></td>
+    <td><%= link_to 'Destroy', compra, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New compra', new_compra_path %>

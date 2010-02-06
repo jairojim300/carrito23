@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  nombre: MyString
+  login: MyString
+  pass: MyString
+  fecha_nacimiento: 2010-01-30
+
+two:
+  nombre: MyString
+  login: MyString
+  pass: MyString
+  fecha_nacimiento: 2010-01-30

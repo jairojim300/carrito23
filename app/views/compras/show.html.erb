@@ -1,0 +1,18 @@
+<p>
+  <b>Usuario:</b>
+  <%=h @compra.usuario_id %>
+</p>
+
+<p>
+  <b>Fecha:</b>
+  <%=h @compra.fecha %>
+</p>
+
+<p>
+  <b>Total:</b>
+  <%=h @compra.total %>
+</p>
+
+
+<%= link_to 'Edit', edit_compra_path(@compra) %> |
+<%= link_to 'Back', compras_path %>

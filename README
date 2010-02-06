@@ -1,0 +1,36 @@
+# Crear proyecto
+rails carrito
+cd carrito
+# Crear primer scaffold
+script/generate scaffold usuario nombre:string login:string password:string fecha_nacimiento:date
+# Migrar la base de datos
+rake db:migrate
+# Crear scaffold para productos
+script/generate scaffold producto nombre:string precio:decimal
+# Editar db/migrate/*******_create_productos.rb "Ver codigo"
+
+# Para poder hacer que el script sea en español o cualquier otro idioma
+# descargan http://github.com/svenfuchs/rails-i18n/blob/master/rails/locale/es.yml
+# y despues mueven el archivo "config/locales", vean ahora el archivo
+# "config/locales/es.yml" ahi se encuentra toda la traduccion al español
+# ahora vayan a "config/environment.rb" y casi al final antes de "end"
+# adicionan "config.i18n.default_locale = :es"
+
+# Layouts, Los layouts son los templates, es en si la forma general que tendra todo el sitio
+# Web en la presentación, cuando hacemos script/generate scaffold por defecto rails crear un layout para 
+# cada vista, pero queremos un layout común para todas nuestras vistas entonces los que hacemos es crea el archivo
+app/views/layouts/application.html.erb
+# y borramos todos los layouts existentes, Nota cada ves que ejecutan script/scaffold rails genera un layout
+# para que use el layout que nosotros definimos para nuestro sitio debemos borrar el layout generado
+# Ahora veamos el código en este archivo
+
+# Para generar compra
+script/generate scaffold compra usuario_id:integer fecha:datetime total:decimal
+# entonces editar el código en db/migrate/********_create_compras.rb "Ver código"
+
+# Generamos login y logout
+# Editar el archivo
+app/models/
+
+# ahora creemos un controlador para el carrito de compras
+script/generate controller 

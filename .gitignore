@@ -1,0 +1,9 @@
+*.kpf
+*.swp
+*.swo
+*.log
+*.sqlite3
+*~
+!pub.txt
+ç
+*.vim

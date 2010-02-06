@@ -1,0 +1,18 @@
+<p>
+  <b>Nombre:</b>
+  <%=h @producto.nombre %>
+</p>
+
+<p>
+  <b>Precio:</b>
+  <%=h @producto.precio %>
+</p>
+
+
+<p>
+  <b>Fotografía:</b>
+  <%= @producto.ver_foto(:medio) %>
+</p>
+
+<%= link_to 'Editar', edit_producto_path(@producto) %> |
+<%= link_to 'Listado', productos_path %>
