@@ -7,4 +7,13 @@ class ApplicationController < ActionController::Base
 
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
+
+protected
+
+  # Metodo que redireciona a la raiz en caso de que el usuario no este logueado
+  def verificar_session
+    unless session[:usuario][:id] and session[:usuario][:tipo] == 'admin'
+      redirect_to "/"
+    end
+  end
 end

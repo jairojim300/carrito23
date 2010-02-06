@@ -1,6 +1,9 @@
 # coding: utf-8
 
 class ProductosController < ApplicationController
+  # verificar session
+  before_filter :verificar_session
+  
   # GET /productos
   # GET /productos.xml
   def index

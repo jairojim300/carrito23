@@ -2,14 +2,18 @@
 rails carrito
 cd carrito
 # Crear primer scaffold
-script/generate scaffold usuario nombre:string login:string password:string fecha_nacimiento:date
+###########
+git checkout 1
+
+
+ruby script/generate scaffold usuario nombre:string login:string password:string fecha_nacimiento:date
 # Migrar la base de datos
 rake db:migrate
 # Crear scaffold para productos
-script/generate scaffold producto nombre:string precio:decimal
-# Editar db/migrate/*******_create_productos.rb "Ver codigo"
+ruby script/generate scaffold producto nombre:string precio:decimal
+# Editar db/migrate/*******_create_productos.rb (ver codigo)
 
-# Para poder hacer que el script sea en español o cualquier otro idioma
+# Para poder hacer que la aplicacion sea en español o cualquier otro idioma
 # descargan http://github.com/svenfuchs/rails-i18n/blob/master/rails/locale/es.yml
 # y despues mueven el archivo "config/locales", vean ahora el archivo
 # "config/locales/es.yml" ahi se encuentra toda la traduccion al español
@@ -17,20 +21,48 @@ script/generate scaffold producto nombre:string precio:decimal
 # adicionan "config.i18n.default_locale = :es"
 
 # Layouts, Los layouts son los templates, es en si la forma general que tendra todo el sitio
-# Web en la presentación, cuando hacemos script/generate scaffold por defecto rails crear un layout para 
+# Web en la presentación, cuando hacemos ruby script/generate scaffold por defecto rails crear un layout para 
 # cada vista, pero queremos un layout común para todas nuestras vistas entonces los que hacemos es crea el archivo
 app/views/layouts/application.html.erb
 # y borramos todos los layouts existentes, Nota cada ves que ejecutan script/scaffold rails genera un layout
 # para que use el layout que nosotros definimos para nuestro sitio debemos borrar el layout generado
 # Ahora veamos el código en este archivo
 
-# Para generar compra
-script/generate scaffold compra usuario_id:integer fecha:datetime total:decimal
-# entonces editar el código en db/migrate/********_create_compras.rb "Ver código"
+###################
+git checkout 2
 
 # Generamos login y logout
 # Editar el archivo
-app/models/
+app/models/usuario.rb
+# Y ahora ejecutamos
+ruby script/generate migration add_usuarios_tipo
+# Ahora editamos el archivo db/migrate/******_add_usuarios_tipo.rb (ver codigo)
+# Ejecutamos de nuevo
+rake db:migrate
+# Editar ahora "app/views/usuarios/new.html.erb" (ver codigo)
 
-# ahora creemos un controlador para el carrito de compras
-script/generate controller 
+# debemos generar metodos para login y password
+# creen en "app/controllers/session_controller.rb" (ver codigo)
+# editamos el archivo  "config/routes.rb" (ver codigo)
+# y reiniciamos el servidor
+# ahora debemos crear la "carpeta app/views/session/"
+# creamos el archivo  "carpeta app/views/session/new.html.erb" (ver codigo)
+
+# Como validar los permisos
+# editamos "app/controllers/application_controller" (ver codigo)
+# y adicionamos los before_filter a los controladores de productos y usuarios (ver codigo)
+
+# Editamos el archivo "app/helpers/application.rb"
+# "app/views/layouts/application.html.erb" para poder presentar el usuario cuando esta logueado
+
+###################
+# git checkout 3
+
+# "app/views/usuarios/new.html.erb" para poder presentar el usuario cuando esta logueado
+
+
+# Para generar compra
+ruby script/generate scaffold compra usuario_id:integer fecha:datetime total:decimal
+# entonces editar el código en db/migrate/********_create_compras.rb (ver codigo)
+
+# Restriccion de acceso

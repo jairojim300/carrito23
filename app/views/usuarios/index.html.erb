@@ -4,7 +4,7 @@
   <tr>
     <th>Nombre</th>
     <th>Login</th>
-    <th>Pass</th>
+    <th>Tipo</th>
     <th>Fecha nacimiento</th>
   </tr>
 
@@ -12,15 +12,16 @@
   <tr>
     <td><%=h usuario.nombre %></td>
     <td><%=h usuario.login %></td>
-    <td><%=h usuario.pass %></td>
-    <td><%=h usuario.fecha_nacimiento %></td>
-    <td><%= link_to 'Show', usuario %></td>
-    <td><%= link_to 'Edit', edit_usuario_path(usuario) %></td>
-    <td><%= link_to 'Destroy', usuario, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%=h usuario.ver_tipo %></td>
+    <!-- probar en la parte :format => "%d %B de %Y" -->
+    <td><%=h I18n.l(usuario.fecha_nacimiento, :format => "%d %b %Y") %></td>
+    <td><%= link_to 'Ver', usuario %></td>
+    <td><%= link_to 'Editar', edit_usuario_path(usuario) %></td>
+    <td><%= link_to 'Borrar', usuario, :confirm => 'Esta seguro?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New usuario', new_usuario_path %>
+<%= link_to 'Nuevo usuario', new_usuario_path, :class => 'nuevo' %>

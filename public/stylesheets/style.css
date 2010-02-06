@@ -68,6 +68,18 @@ a:hover { color: #fff; background-color:#000; }
   color: #FFF; /* Color del texto */
   padding: 30px 20px; /* espacio dentro arriba y abajo 30px, izquierda y derecha 20px */
 }
+#head div.usuario{
+  float: right;
+  width: 50%;
+  text-align: right;
+  margin-top: -15px;
+}
+#head div.usuario a{
+  font-size: 0.3em;
+  vertical-align: top;
+  color: #EDBE16;
+  font-style: normal;
+}
 
 #content{
   padding: 4px 10px;
@@ -97,3 +109,18 @@ table td{
 table tr{
   border-bottom: 1px solid #CFCFCF; /* boder abajo 1 pixel solido color */
 }
+
+a.nuevo{
+  font-weight: bold;
+  font-size: 1.1em;
+  padding-left: 16px;
+  background-image: url(../images/add.png);
+  background-repeat: no-repeat;
+}
+
+a.salir{
+  padding-left: 16px;
+  background: transparent url(../images/logout.png) no-repeat;
+}
+
+

@@ -1,4 +1,4 @@
-<h1>New usuario</h1>
+<h1>Nuevo usuario</h1>
 
 <% form_for(@usuario) do |f| %>
   <%= f.error_messages %>
@@ -13,14 +13,22 @@
   </p>
   <p>
     <%= f.label :pass %><br />
-    <%= f.text_field :pass %>
+    <%= f.password_field :pass %>
+  </p>
+  <p>
+    <%= f.label :pass_confirmation %><br />
+    <%= f.password_field :pass_confirmation %>
+  </p>
+  <p>
+    <%= f.label :tipo %><br />
+    <%= f.select :tipo, Usuario::TIPOS, {:include_blank => true} %>
   </p>
   <p>
     <%= f.label :fecha_nacimiento %><br />
     <%= f.date_select :fecha_nacimiento %>
   </p>
   <p>
-    <%= f.submit 'Create' %>
+    <%= f.submit 'Crear' %>
   </p>
 <% end %>
 

@@ -1,6 +1,9 @@
 # coding: utf-8
 
 class UsuariosController < ApplicationController
+  # Verifica la sesion del usuario, ver app/controllers/application_controller.rb
+  before_filter :verificar_session, :only => [:index, :destroy]
+
   # GET /usuarios
   # GET /usuarios.xml
   def index

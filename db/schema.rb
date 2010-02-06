@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100206024341) do
+ActiveRecord::Schema.define(:version => 20100206041317) do
 
   create_table "compras", :force => true do |t|
     t.integer  "usuario_id"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(:version => 20100206024341) do
     t.date     "fecha_nacimiento"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "tipo",             :default => "usuario"
   end
 
 end
