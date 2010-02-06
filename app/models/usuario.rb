@@ -14,6 +14,9 @@ class Usuario < ActiveRecord::Base
   # Se define una constante con tipos de usuarios
   TIPOS = [["Usuario", "usuario"], ["Administrador", "admin"]]
 
+  # Relación de 1 a muchos
+  has_many :compra_detalles
+
   # Presenta el tipo de forma legible
   # Busca dentro de un array con el metodo find
   # y finalmente presenta el ultimo elemento del sub array que encuentra
@@ -21,5 +24,6 @@ class Usuario < ActiveRecord::Base
   def ver_tipo
     TIPOS.find{ |v| v.last == tipo }.first
   end
+
 
 end

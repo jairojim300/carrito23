@@ -7,22 +7,25 @@
     <%= f.label :nombre %><br />
     <%= f.text_field :nombre %>
   </p>
+
+  <% if admin? %>
   <p>
-    <%= f.label :login %><br />
-    <%= f.text_field :login %>
+    <%= f.label :tipo %><br />
+    <%= f.select :tipo, Usuario::TIPOS, {:include_blank => true} %>
   </p>
-  <p>
-    <%= f.label :pass %><br />
-    <%= f.text_field :pass %>
-  </p>
+  <% end %>
+
   <p>
     <%= f.label :fecha_nacimiento %><br />
     <%= f.date_select :fecha_nacimiento %>
   </p>
   <p>
-    <%= f.submit 'Update' %>
+    <%= f.submit 'Crear' %>
   </p>
 <% end %>
 
-<%= link_to 'Show', @usuario %> |
-<%= link_to 'Back', usuarios_path %>
+<%= link_to 'Ver', @usuario %> 
+<% if admin? %>
+  |
+  <%= link_to 'Lista', usuarios_path %>
+<% end %>

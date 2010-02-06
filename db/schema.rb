@@ -9,7 +9,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100206041317) do
+ActiveRecord::Schema.define(:version => 20100206120657) do
+
+  create_table "compra_detalles", :force => true do |t|
+    t.integer  "compra_id"
+    t.integer  "producto_id"
+    t.integer  "cantidad"
+    t.decimal  "precio"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "compras", :force => true do |t|
     t.integer  "usuario_id"

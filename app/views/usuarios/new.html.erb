@@ -12,17 +12,21 @@
     <%= f.text_field :login %>
   </p>
   <p>
-    <%= f.label :pass %><br />
+    <%= f.label :pass, "Contraseña" %><br />
     <%= f.password_field :pass %>
   </p>
   <p>
-    <%= f.label :pass_confirmation %><br />
+    <%= f.label :pass_confirmation, "Confirmación de contraseña" %><br />
     <%= f.password_field :pass_confirmation %>
   </p>
+
+  <% if admin? %>
   <p>
     <%= f.label :tipo %><br />
     <%= f.select :tipo, Usuario::TIPOS, {:include_blank => true} %>
   </p>
+  <% end %>
+
   <p>
     <%= f.label :fecha_nacimiento %><br />
     <%= f.date_select :fecha_nacimiento %>
@@ -32,4 +36,6 @@
   </p>
 <% end %>
 
-<%= link_to 'Back', usuarios_path %>
+<% if admin? %>
+  <%= link_to 'Lista', usuarios_path %>
+<% end %>

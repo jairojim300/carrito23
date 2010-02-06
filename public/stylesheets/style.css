@@ -123,4 +123,16 @@ a.salir{
   background: transparent url(../images/logout.png) no-repeat;
 }
 
+ul#listado_productos{
+  list-style: none;
+}
 
+ul#listado_productos li{
+  list-style: none;
+}
+
+ul#listado_productos .precio{
+  font-weight: bold;
+  font-size: 1.3em;
+  vertical-align: top;
+}

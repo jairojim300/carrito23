@@ -13,6 +13,9 @@ ActionController::Routing::Routes.draw do |map|
   # Definimos la ruta del logout
   map.logout '/logout', :controller => "session", :action => "destroy"
 
+  # Rutas para carrito_compras
+  map.resources :carrito_compras
+
 
   # The priority is based upon order of creation: first created -> highest priority.
 
@@ -47,6 +50,9 @@ ActionController::Routing::Routes.draw do |map|
 
   # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
   # map.root :controller => "welcome"
+  
+  # Definimos la raiz
+  map.root :controller => 'carrito_compras'
 
   # See how all your routes lay out with "rake routes"
 

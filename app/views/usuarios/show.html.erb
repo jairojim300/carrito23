@@ -9,15 +9,13 @@
 </p>
 
 <p>
-  <b>Pass:</b>
-  <%=h @usuario.pass %>
-</p>
-
-<p>
   <b>Fecha nacimiento:</b>
-  <%=h @usuario.fecha_nacimiento %>
+  <%=h I18n.l(@usuario.fecha_nacimiento, :format=> "%d %B de %Y") %>
 </p>
 
 
-<%= link_to 'Edit', edit_usuario_path(@usuario) %> |
-<%= link_to 'Back', usuarios_path %>
+<%= link_to 'Editar', edit_usuario_path(@usuario) %> 
+<% if admin? %>
+  |
+  <%= link_to 'Lista', usuarios_path %>
+<% end %>

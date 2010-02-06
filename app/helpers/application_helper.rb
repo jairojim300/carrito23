@@ -3,10 +3,16 @@ module ApplicationHelper
 
   # Presenta el nombre del usuario y un vinvulo de salida para
   def mostrar_usuario
-    if session[:usuario][:id]
+    if session[:usuario] and session[:usuario][:id]
       html = link_to(session[:usuario][:nombre], usuario_path(session[:usuario][:id]) )
       html << " "
       html << link_to("Salir", "/logout", :class => 'salir')
     end
+
+  end
+
+  # determina si el usuario esta logueado y es administrador
+  def admin?
+    session[:usuario] and session[:usuario][:tipo] == 'admin'
   end
 end

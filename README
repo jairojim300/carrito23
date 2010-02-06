@@ -58,11 +58,23 @@ rake db:migrate
 ###################
 # git checkout 3
 
-# "app/views/usuarios/new.html.erb" para poder presentar el usuario cuando esta logueado
-
-
-# Para generar compra
+# Para generar compra es necesario crear el controlador
 ruby script/generate scaffold compra usuario_id:integer fecha:datetime total:decimal
-# entonces editar el código en db/migrate/********_create_compras.rb (ver codigo)
+# editamos el archivo "db/migrate/********_create_compras.rb"
+# Ahora generamos el modelo compra_detalle
+ruby script/generate model compra_detalle compra_id:integer producto_id:integer cantidad:integer precio:decimal
+# editamos el archivo "db/migrate/********_create_compra_detalles.rb"
+# Ahora editamos los modelos compra y producto  en "app/models" (ver codigo)
+# Y ahora editamos el modelo compra_detalle (ver codigo)
 
-# Restriccion de acceso
+# Generamos un controlador para poder presentar los productos y poder adicionar items al carrito de compras
+ruby script/generate controller carrito_compras
+# Ahora adicionaremos paginacion, editamos el archivo "config/environment.rb" (ver codigo)
+# y luego editamos el archivo "app/controllers/application_controller.rb" (ver codigo)
+# editamos el archivo "config/routes.rb" (ver codigo)
+# y borramos el archivo "public/index.html"
+
+# ahora creamos el archivo "app/views/carrito_compras/index.html.erb" (ver codigo)
+# creamos "app/views/carrito_compras/new.html.erb"
+# creamos "app/models/item_session.rb"
+

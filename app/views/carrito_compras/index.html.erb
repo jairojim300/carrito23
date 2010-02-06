@@ -1,0 +1,14 @@
+<h1>Productos</h1>
+
+<ul id="listado_productos">
+  <% @productos.each do |p| %>
+    <li>
+      <h3><%= p.nombre %></h3>
+      <%= p.ver_foto(:mini) %>
+      <p>
+        <span class="precio"><%= p.precio %></span>
+        <%= link_to "adicionar", new_carrito_compra_path(:id => p.id), :class => "precio" %>
+      </p>
+    </li>
+  <% end %>
+</ul>

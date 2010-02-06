@@ -1,8 +1,10 @@
 # coding: utf-8
 
 class UsuariosController < ApplicationController
-  # Verifica la sesion del usuario, ver app/controllers/application_controller.rb
+  # Verifica la sesion del usuario solo las acciones :index y :destroy, ver app/controllers/application_controller.rb
   before_filter :verificar_session, :only => [:index, :destroy]
+  # Verifica el tipo de usuario, exeptuando las acciones :index y :destroy
+  before_filter :verificar_tipo_usuario, :except => [:index, :destroy]
 
   # GET /usuarios
   # GET /usuarios.xml
@@ -28,6 +30,7 @@ class UsuariosController < ApplicationController
       format.html # show.html.erb
       format.xml  { render :xml => @usuario }
     end
+
   end
 
   # GET /usuarios/new
@@ -42,6 +45,7 @@ class UsuariosController < ApplicationController
   end
 
   # GET /usuarios/1/edit
+  # Verificacion de que esta logueado el usuario para editar
   def edit
     @usuario = Usuario.find(params[:id])
   end
@@ -66,6 +70,9 @@ class UsuariosController < ApplicationController
   # PUT /usuarios/1
   # PUT /usuarios/1.xml
   def update
+    # Proteccion, borrar todos los parametros en caso de que se creen de otra forma
+    [:pass, :pass_confirmation, :login, :tipo].each{ |v| params[:usuario].delete(v) }
+
     @usuario = Usuario.find(params[:id])
 
     respond_to do |format|
@@ -89,6 +96,16 @@ class UsuariosController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(usuarios_url) }
       format.xml  { head :ok }
+    end
+  end
+
+private
+  # Verifica que tipo de usuario es y si esta logueado
+  def verificar_tipo_usuario
+    if session[:usuario].nil? or session[:usuario][:id].nil?
+      redirect_to "/"
+    else
+      params[:id] = session[:usuario][:id] unless session[:usuario][:tipo] == 'admin'
     end
   end
 end
