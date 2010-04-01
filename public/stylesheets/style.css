@@ -109,7 +109,20 @@ table td{
 table tr{
   border-bottom: 1px solid #CFCFCF; /* boder abajo 1 pixel solido color */
 }
+ul#listado_productos{
+  list-style: none;
+}
 
+ul#listado_productos li{
+  list-style: none;
+}
+
+ul#listado_productos .precio{
+  font-weight: bold;
+  font-size: 1.3em;
+  vertical-align: top;
+}
+/* Links con imagenes*/
 a.nuevo{
   font-weight: bold;
   font-size: 1.1em;
@@ -123,16 +136,28 @@ a.salir{
   background: transparent url(../images/logout.png) no-repeat;
 }
 
-ul#listado_productos{
-  list-style: none;
+a.carrito{
+  padding-left: 16px;
+  background: transparent url(../images/cart.png) no-repeat;
 }
 
-ul#listado_productos li{
-  list-style: none;
+a.comprar_mas{
+  padding-left: 16px;
+  background: transparent url(../images/cart_add.png) no-repeat;
 }
 
-ul#listado_productos .precio{
+
+a.terminar_compra{
+  padding-left: 16px;
+  background: transparent url(../images/cart_go.png) no-repeat;
+}
+a.login{
+  padding-left: 16px;
+  background: transparent url(../images/user_green.png) no-repeat;
+}
+
+#notice{
+  font-size: 2em;
   font-weight: bold;
-  font-size: 1.3em;
-  vertical-align: top;
+  color: green;
 }

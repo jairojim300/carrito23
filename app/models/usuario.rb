@@ -15,7 +15,7 @@ class Usuario < ActiveRecord::Base
   TIPOS = [["Usuario", "usuario"], ["Administrador", "admin"]]
 
   # Relación de 1 a muchos
-  has_many :compra_detalles
+  has_many :compras
 
   # Presenta el tipo de forma legible
   # Busca dentro de un array con el metodo find
@@ -25,5 +25,8 @@ class Usuario < ActiveRecord::Base
     TIPOS.find{ |v| v.last == tipo }.first
   end
 
+  def to_s
+    nombre
+  end
 
 end

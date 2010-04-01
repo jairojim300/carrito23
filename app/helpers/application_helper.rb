@@ -7,6 +7,8 @@ module ApplicationHelper
       html = link_to(session[:usuario][:nombre], usuario_path(session[:usuario][:id]) )
       html << " "
       html << link_to("Salir", "/logout", :class => 'salir')
+    else
+      html = link_to "Ingresar", "/login", :class => "login"
     end
 
   end

@@ -1,5 +1,6 @@
 <h1>Carrito de compras</h1>
 
+<%= form_tag "/carrito_compras/1", :method => :put %>
 <table>
   <tr>
     <th>Foto</th>
@@ -7,21 +8,29 @@
     <th>Precio</th>
     <th>Cantidad</th>
     <th>Subtotal</th>
+    <th></th>
   </tr>
-
+  <% @suma = 0 %>
   <% session[:carrito].each do |item| %>
     <tr>
+      <%= hidden_field_tag "producto[#{item.id}][id]", item.id %>
       <td><%= item.ver_foto %></td>
       <td><%= item.nombre %></td>
       <td><%= item.precio %></td>
-      <td><%= item.cantidad %></td>
-      <td><%= item.subtotal %></td>
+      <td><%= text_field_tag("producto[#{item.id}][cantidad]", item.cantidad, :size => 4) %></td>
+      <td style="text-align:right"><%= item.subtotal %></td>
+      <td><%= link_to "borrar", new_carrito_compra_path(:id => item.id, :params => {:producto => {item.id => {:cantidad => 0}}}) %></td>
     </tr>
+    <% @suma += item.subtotal %>
   <% end %>
+  <tr>
+    <td style="text-align:right" colspan="4"><strong>Total:</strong></td>
+    <td style="text-align:right"><strong><%= @suma %></strong></td>
+  </tr>
 </table>
-<%= link_to "Seguir comprando", carrito_compras_path %>
-<br />
-<br />
-<% form_for @compra do |f| -%>
-  <%= f.submit "Comprar" %>
-<% end -%>
+<%= submit_tag "Actualizar" %>
+</form>
+<h3>
+<%= link_to "Seguir comprando", carrito_compras_path, :class => "comprar_mas" %>
+<%= link_to "Terminar compra", new_compra_path, :class => "terminar_compra" %>
+</h3>

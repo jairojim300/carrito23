@@ -1,4 +1,6 @@
 class CompraDetalle < ActiveRecord::Base
-  belongs_to :compra_detalle
+  # Pertenece a compra "relacion"
+  belongs_to :compra
+  # Pertenece a producto "relacion"
   belongs_to :producto
 end

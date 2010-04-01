@@ -21,10 +21,10 @@ Rails::Initializer.run do |config|
   # config.gem "aws-s3", :lib => "aws/s3"
   
   # Gema paperclip, para poder subir archivos y generar imagenes de varias dimensiones
-  config.gem "paperclip"
+  config.gem "paperclip", :version => "2.3.1.1"
 
   # Gema will_paginate, para realizar paginacion
-  config.gem "will_paginate"
+  config.gem "will_paginate", :version => "2.3.12"
 
 
   # Only load the plugins named here, in the order given (default is alphabetical).

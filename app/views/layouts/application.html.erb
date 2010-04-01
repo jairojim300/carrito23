@@ -16,10 +16,14 @@
    <div id="head">
      Carrito de compras
      <div class="usuario">
-        <%= mostrar_usuario %>
+         <%= mostrar_usuario %>
+         <%= link_to "Ver carrito", new_carrito_compra_path, :class => "carrito" %>
      </div>
    </div>
    <div id="content">
+     <div id="notice">
+       <%= flash[:notice] %>
+     </div>
    <!--Contenido-->
    <%= yield %>
    </div>

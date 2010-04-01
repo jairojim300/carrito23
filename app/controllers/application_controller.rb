@@ -23,4 +23,12 @@ protected
     @page = params[:page].nil? ? 1 : params[:page].to_i
     @per_page = 3
   end
+
+  # Revisa si es que un usuario esta logueado
+  def revisar_usuario
+    if session[:usuario].empty?
+      flash[:notice] = "Debe loguearsar para poder seguir"
+      redirect_to "/login"
+    end
+  end
 end

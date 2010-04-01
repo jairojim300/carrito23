@@ -9,7 +9,7 @@
 
 <% @compras.each do |compra| %>
   <tr>
-    <td><%=h compra.usuario_id %></td>
+    <td><%=h compra.usuario %></td>
     <td><%=h compra.fecha %></td>
     <td><%=h compra.total %></td>
     <td><%= link_to 'Show', compra %></td>

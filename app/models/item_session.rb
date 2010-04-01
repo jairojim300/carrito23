@@ -2,7 +2,8 @@
 #
 # Metodo para poder manejar la sesion de los items
 class ItemSession
-  attr_reader :id, :cantidad, :precio, :foto, :nombre
+  attr_reader :id, :precio, :foto, :nombre
+  attr_accessor :cantidad
 
   # inicia la clase con los valores
   def initialize(id)
@@ -29,8 +30,9 @@ class ItemSession
     precio * cantidad
   end
 
+  # Metodo para presentar la foto
   def ver_foto
-    %(<img src="#{foto}" alt="#{nombre}" />)
+    %Q(<img src="#{foto}" alt="#{nombre}" />)
   end
 
 end

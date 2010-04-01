@@ -3,11 +3,11 @@
 <% form_for @usuario, :url => {:controller => :session} do |f| -%>
   <%= f.error_messages %>
   <p>
-    <%= f.label :login %><br />
+    <%= f.label :login, "Usuario" %><br />
     <%= f.text_field :login %>
   </p>
   <p>
-    <%= f.label :pass %><br />
+    <%= f.label :pass, "Contraseña" %><br />
     <%= f.password_field :pass %>
   </p>
   <p>

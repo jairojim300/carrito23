@@ -12,30 +12,55 @@ class CarritoComprasController < ApplicationController
   # Metodo para presentar el carrito de compras
   def new
     @compra = Compra.new
-    # Adicionamos item si existe
-    adicionar_item
+    # Adicionamos o actualizamos la cantidad
+    adicionar_o_actualizar_item(params[:id])
     Producto.all(:conditions => {:id => session[:carrito] } ) if session[:carrito].size > 0
+  end
+
+  # actualiza los items que se haya seleccionado
+  def update
+    @compra = Compra.new
+    # Iteramos a traves de todos los productos
+    params[:producto].each do |k, prod|
+      adicionar_o_actualizar_item(k)
+    end
+
+    render :action => "new"
   end
 
 private
   # metodo para adicionar items al carrito de compras
-  def adicionar_item
+  # por defecto con el valor de id = nil
+  def adicionar_o_actualizar_item(id = nil)
     session[:carrito] ||= []
-    unless params[:id].nil?
-      i = session[:carrito].find_index{|v| v.id == params[:id].to_i }
-      unless i
-        session[:carrito] << ItemSession.new(params[:id])
+    # Si no existe id no se realiza la accion
+    unless id.nil?
+      id = id.to_i
+      index = session[:carrito].find_index{|v| v.id == id }
+      # Si no encuentra el item no realizar nada
+      session[:carrito] << ItemSession.new(id) if index.nil?
+      # Se cambia la cantidad o se mantiene en base a los parametros
+      if params[:producto]
+        cantidad = params[:producto][id.to_s][:cantidad].to_i
       else
-        session[:carrito][i].aumentar_cantidad(1)
+        cantidad = session[:carrito].last.cantidad
+        # Necesitamos el indice
+        index = session[:carrito].size - 1
+      end
+      # Adicion o borrado de cantidad
+      if cantidad == 0
+        borrar_item(id)
+      else
+        session[:carrito][index].cantidad = cantidad
       end
     end
   end
 
   # Metodo para borrar items
-  def borrar_item
-    unless params[:id].nil?
-      p = session[:carrito].find{|v| v[:id] == params[:id] }
-      session[:carrito].delete(p)
-    end
+  # @param Integer id
+  def borrar_item(id)
+    p = session[:carrito].find{|v| v.id == id }
+    # Borrar item si existe
+    session[:carrito].delete(p) if p
   end
 end

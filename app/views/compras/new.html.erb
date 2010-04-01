@@ -1,23 +1,34 @@
-<h1>New compra</h1>
+<h1>Nueva compra</h1>
 
 <% form_for(@compra) do |f| %>
   <%= f.error_messages %>
 
-  <p>
-    <%= f.label :usuario_id %><br />
-    <%= f.text_field :usuario_id %>
-  </p>
-  <p>
-    <%= f.label :fecha %><br />
-    <%= f.datetime_select :fecha %>
-  </p>
-  <p>
-    <%= f.label :total %><br />
-    <%= f.text_field :total %>
-  </p>
-  <p>
-    <%= f.submit 'Create' %>
-  </p>
+<table>
+  <tr>
+    <th>Foto</th>
+    <th>Producto</th>
+    <th>Precio</th>
+    <th>Cantidad</th>
+    <th>Subtotal</th>
+  </tr>
+  <% @suma = 0 %>
+  <% session[:carrito].each do |item| %>
+    <tr>
+      <%= hidden_field_tag "producto[#{item.id}][id]", item.id %>
+      <td><%= item.ver_foto %></td>
+      <td><%= item.nombre %></td>
+      <td><%= item.precio %></td>
+      <td><%= item.cantidad %></td>
+      <td style="text-align:right"><%= item.subtotal %></td>
+    </tr>
+    <% @suma += item.subtotal %>
+  <% end %>
+  <tr>
+    <td style="text-align:right" colspan="4"><strong>Total:</strong></td>
+    <td style="text-align:right"><strong><%= @suma %></strong></td>
+  </tr>
+</table>
+  <%= f.submit "Pagar" %>
 <% end %>
 
-<%= link_to 'Back', compras_path %>
+<%= link_to 'Seguir comprando', carrito_compras_path, :class => "comprar_mas" %>

@@ -2,6 +2,9 @@
 
 # Clase prodcto que permite acceder a la tabla productos en la base de datos
 class Producto < ActiveRecord::Base
+
+  has_many :compra_detalles
+  has_many :compras, :through => :compra_detalles
   # Para que funcione la gema paperclip es necesario añadir esto
   # donde :foto es el campo que se usara, :styles son los estilos o
   # tamaños de las fotos que se generaran, Muy importante es recordar

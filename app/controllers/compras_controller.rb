@@ -1,4 +1,5 @@
 class ComprasController < ApplicationController
+  before_filter :revisar_usuario
   # GET /compras
   # GET /compras.xml
   def index
@@ -40,11 +41,16 @@ class ComprasController < ApplicationController
   # POST /compras
   # POST /compras.xml
   def create
-    @compra = Compra.new(params[:compra])
+    @compra = Compra.new(:usuario_id => session[:usuario][:id])
+  
+    # Adicion de items a compra
+    session[:carrito].each do |c|
+      @compra.compra_detalles << CompraDetalle.new(:producto_id => c.id, :cantidad => c.cantidad, :precio => c.precio)
+    end
 
     respond_to do |format|
       if @compra.save
-        flash[:notice] = 'Compra was successfully created.'
+        flash[:notice] = 'Se realizo correctamente la compra.'
         format.html { redirect_to(@compra) }
         format.xml  { render :xml => @compra, :status => :created, :location => @compra }
       else
